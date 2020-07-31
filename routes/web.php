@@ -12,4 +12,6 @@
 */
 
 Route::get('/' , 'DashboardController@index')->middleware('auth');
-Auth::routes();
+
+// Dissable register laravel
+Auth::routes(['register' => false]);
