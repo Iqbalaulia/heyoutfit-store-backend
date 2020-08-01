@@ -17,4 +17,6 @@ Route::get('/' , 'DashboardController@index')->name('dashboard')->middleware('au
 Auth::routes(['register' => false]);
 
 Route::resource('products','ProductController')->middleware('auth');
+Route::get('products/{id}/gallery','ProductController@gallery')->name('products.gallery')->middleware('auth');
+
 Route::resource('product-galleries','ProductGalleryController')->middleware('auth');
