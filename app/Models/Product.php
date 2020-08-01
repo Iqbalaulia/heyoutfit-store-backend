@@ -21,9 +21,12 @@ class Product extends Model
     ];
 
     // Menghubungkan relasi product dengan table ProductGallery [0]
+    
     // [1] terdapat pada model ProductGallery
     public function galleries(){
-        return $this->hasMany(ProductGallery::class,'products_id','id');
+
+        return $this->hasMany(ProductGallery::class,'products_id');
+
     }
 
 }
