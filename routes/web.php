@@ -20,3 +20,5 @@ Route::resource('products','ProductController')->middleware('auth');
 Route::get('products/{id}/gallery','ProductController@gallery')->name('products.gallery')->middleware('auth');
 
 Route::resource('product-galleries','ProductGalleryController')->middleware('auth');
+
+Route::resource('transactions','TransactionController')->middleware('auth');
