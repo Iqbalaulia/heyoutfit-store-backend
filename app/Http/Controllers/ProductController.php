@@ -69,7 +69,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Product::findOrFail($id);
+
+        return view('pages.products.edit', compact(
+            'item'
+        ));
     }
 
     /**
@@ -79,9 +83,18 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        // Mengambil semua data yang ada pada form
+        $data = $request->all();
+        // Mengambil data name dan diubah menjadi slug name
+        $data['slug'] = Str::slug($request->name);
+        // Mencocokan dengan data sesuai dengan idnya
+        $item = Product::findOrFail($id);
+        // Mengubah data yang sesuai dengan idnya
+        $item->update($data);   
+        // Redirect ke halaman product index ketika sukses tersimpan
+        return redirect()->route('products.index');
     }
 
     /**
