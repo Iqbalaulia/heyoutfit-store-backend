@@ -16,4 +16,5 @@ Route::get('/' , 'DashboardController@index')->name('dashboard')->middleware('au
 // Dissable register laravel
 Auth::routes(['register' => false]);
 
-Route::resource('products','ProductController');
+Route::resource('products','ProductController')->middleware('auth');
+Route::resource('product-galleries','ProductGalleryController')->middleware('auth');
