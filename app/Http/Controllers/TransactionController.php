@@ -52,7 +52,14 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        // ORM didalam details terdapat relasi product
+        $item = Transaction::with(['details.product'])->findOrFail($id);
+
+        return view('pages.transactions.show', compact(
+            
+            'item'
+
+        ));
     }
 
     /**

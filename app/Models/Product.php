@@ -25,13 +25,13 @@ class Product extends Model
     // [1] terdapat pada model ProductGallery
     public function galleries(){
 
-        return $this->hasMany(ProductGallery::class,'products_id');
+        return $this->hasMany(ProductGallery::class,'products_id','id');
 
     }
 
     public function transaction_details(){
 
-        return $this->hasMany(TransactionDetail::class,'products_id');
+        return $this->hasMany(TransactionDetail::class,'products_id','id');
 
     }
 
