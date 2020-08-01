@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductGalleryRequest;
+use App\Models\Product;
 use App\Models\ProductGallery;
 
 class ProductGalleryController extends Controller
@@ -29,7 +30,11 @@ class ProductGalleryController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+
+        return view('pages.product_galleries.create', compact(
+            'products'
+        ));
     }
 
     /**
@@ -38,9 +43,20 @@ class ProductGalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductGalleryRequest $request)
     {
-        //
+        // Mengambil semua data yang ada pada form
+        $data = $request->all();
+
+        // Insert data gambar
+        $data['photo'] = $request->file('photo')->store(
+            'assets/product', 'public'
+        );
+        
+        // Insert data
+        ProductGallery::create($data);
+        // Redirect ke halaman product index ketika sukses tersimpan
+        return redirect()->route('product-galleries.index');
     }
 
     /**

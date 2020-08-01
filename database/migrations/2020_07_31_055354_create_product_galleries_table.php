@@ -17,8 +17,7 @@ class CreateProductGalleriesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('products_id');
             $table->string('photo');
-            $table->integer('is_default');
-            $table->boolean('slug');
+            $table->boolean('is_default');            
             $table->softDeletes();
             $table->timestamps();
         });
