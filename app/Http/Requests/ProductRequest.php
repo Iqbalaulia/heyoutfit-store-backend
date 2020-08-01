@@ -26,11 +26,11 @@ class ProductRequest extends FormRequest
     {
         return [
             //Aturan - aturan
-            'name' => 'requiered|max:255',
+            'name' => 'required|max:255',
             'type' => 'required|max:255',
             'description' => 'required',
             'price' => 'required|integer',
-            'quantity' => 'required|integer'
+            'quantity' => 'required|integer',
         ];
     }
 }

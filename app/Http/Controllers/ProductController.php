@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -27,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.products.create');
     }
 
     /**
@@ -36,9 +38,16 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        // Mengambil semua data yang ada pada form
+        $data = $request->all();
+        // Mengambil data name dan diubah menjadi slug name
+        $data['slug'] = Str::slug($request->name);
+        // Insert data
+        Product::create($data);
+        // Redirect ke halaman product index ketika sukses tersimpan
+        return redirect()->route('products.index');
     }
 
     /**
