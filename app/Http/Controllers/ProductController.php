@@ -110,6 +110,8 @@ class ProductController extends Controller
 
         $item->delete();
 
+        ProductGallery::where('products_id', $id)->delete();
+        
         return redirect()->route('products.index');
 
     }
