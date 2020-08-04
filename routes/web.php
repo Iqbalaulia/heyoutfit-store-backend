@@ -22,3 +22,4 @@ Route::get('products/{id}/gallery','ProductController@gallery')->name('products.
 Route::resource('product-galleries','ProductGalleryController')->middleware('auth');
 
 Route::resource('transactions','TransactionController')->middleware('auth');
+Route::get('transactions/{id}/set-status','TransactionController@setStatus')->name('transactions.status')->middleware('auth');

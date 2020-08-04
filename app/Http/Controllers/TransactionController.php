@@ -106,4 +106,21 @@ class TransactionController extends Controller
     {
         //
     }
+
+    public function setStatus(Request $request, $id){
+
+        //  Validasi hanya menerima data yang bernama pending, success dan failed
+        $request->validate([
+            'status' => 'required|in:PENDING,SUCCESS,FAILED'
+        ]);
+
+        $item = Transaction::findOrFail($id);
+
+        $item->transaction_status = $request->status;
+        
+        // Melakukan update data mengubah status
+        $item->save();
+
+        return redirect()->route('transactions.index');
+    }
 }
