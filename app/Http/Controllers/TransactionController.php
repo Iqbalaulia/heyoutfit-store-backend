@@ -70,7 +70,11 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Transaction::findOrFail($id);
+
+        return view('pages.transactions.edit',compact(
+            'item'
+        ));
     }
 
     /**
@@ -82,7 +86,14 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         // Mengambil semua data yang ada pada form
+         $data = $request->all();
+         // Mencocokan dengan data sesuai dengan idnya
+         $item = Transaction::findOrFail($id);
+         // Mengubah data yang sesuai dengan idnya
+         $item->update($data);   
+         // Redirect ke halaman product index ketika sukses tersimpan
+         return redirect()->route('transactions.index');
     }
 
     /**
