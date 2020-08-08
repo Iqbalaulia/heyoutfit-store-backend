@@ -16,17 +16,19 @@ class CheckoutController extends Controller
         $data = $request->except('transaction_details');
         
         $data['uuid'] = 'TRX' . mt_rand(10000,99999) . mt_rand(100,999);
-
+        
         $transaction = Transaction::create($data);
-
+        
         foreach($request->transaction_details as $product){
             
             $details[] = new TransactionDetail([
 
-                'transaction_id' => $transaction->id,
-                'product_id' => $product,
+                'transactions_id' => $transaction->id,
+                'products_id' => $product,
 
             ]);
+           
+
             // Mengupdate data dengan mengurangi stok barang
             Product::find($product)->decrement('quantity');
             
