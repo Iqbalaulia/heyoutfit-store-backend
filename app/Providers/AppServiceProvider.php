@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-use App\Observers\JobObserver;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,10 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if($this->app->environment() == 'production') {
-            \URL::forceScheme('https');
-            \URL::forceRootUrl(\Config::get('app.url'));
-        }
- 
+        //
     }
 }
