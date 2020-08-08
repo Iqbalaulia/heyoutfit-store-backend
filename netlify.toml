@@ -1,5 +1,4 @@
-[build]
-
-command = "npm run production"
-publish = "public"
-environment = { PHP_VERSION = "7.4" }
+[[redirects]]
+  from = "/*"
+  to = "https://naughty-babbage-5dfcb3.netlify.app"
+  status = 200
