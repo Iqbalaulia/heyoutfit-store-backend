@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('products','Api\ProductController@all');
 Route::post('checkout','Api\CheckoutController@checkout');
+Route::get('transactions/{id}','Api\TransactionController@get');
